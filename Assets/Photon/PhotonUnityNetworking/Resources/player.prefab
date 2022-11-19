@@ -171,13 +171,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 9
-  m_Radius: 2
+  m_Height: 4.99
+  m_Radius: 1.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 4.8, z: 0}
+  m_Center: {x: 0, y: 2.4, z: 0}
 --- !u!1001 &7142601681990201241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,7 +313,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: quitgame
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2221181663559653059, guid: 2d7cad1f81760ea4d8b7ba3571eb5441, type: 3}
+    - {fileID: 2221181663559653056, guid: 2d7cad1f81760ea4d8b7ba3571eb5441, type: 3}
+    - {fileID: 2221181663559653058, guid: 2d7cad1f81760ea4d8b7ba3571eb5441, type: 3}
+    - {fileID: 2221181663559653063, guid: 2d7cad1f81760ea4d8b7ba3571eb5441, type: 3}
+    - {fileID: -5545822811941235950, guid: 2d7cad1f81760ea4d8b7ba3571eb5441, type: 3}
+    - {fileID: -5905438432425586615, guid: 2d7cad1f81760ea4d8b7ba3571eb5441, type: 3}
+    - {fileID: 4618691293066671217, guid: 2d7cad1f81760ea4d8b7ba3571eb5441, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2d7cad1f81760ea4d8b7ba3571eb5441, type: 3}
 --- !u!4 &8810764819106832056 stripped
 Transform:

@@ -58,10 +58,10 @@ public class MoveCapsule : MonoBehaviourPunCallbacks
     public void jump()
     {
         Debug.Log("jump");
-        if (CapsulePlayer.isGrounded && !isJumping)
+        if (!isJumping)
         {
             isJumping = true;
-            Debug.Log("jump - isGrounded");
+            Debug.Log("Beginning jump");
             jumpDirection.y = jumpSpeed;
             anim.SetInteger("move", 3);
         }
@@ -115,7 +115,7 @@ public class MoveCapsule : MonoBehaviourPunCallbacks
                 gun2.SetActive(true);
                 gun3.SetActive(false);
             }
-            else if(gun2.activeSelf == true)
+            else if (gun2.activeSelf == true)
             {
                 gun1.SetActive(false);
                 gun2.SetActive(false);
@@ -138,8 +138,8 @@ public class MoveCapsule : MonoBehaviourPunCallbacks
         moveDirection = new Vector3(0, 0, vertical);
         moveDirection = transform.TransformDirection(moveDirection);
         this.transform.Rotate(0, horizontal, 0);
-        
-       
+
+
 
         //animations
         if (moveDirection.z != 0)
@@ -157,33 +157,26 @@ public class MoveCapsule : MonoBehaviourPunCallbacks
         }
         else
         {
-            anim.SetInteger("move", 0);          
+            anim.SetInteger("move", 0);
         }
-
 
         if (Input.GetKey(KeyCode.Space))
         {
             jump();
         }
 
-        if (!isJumping)
+        CapsulePlayer.Move(moveDirection 
+            + jumpDirection * Time.deltaTime 
+            + moveJoystick);
+
+        if (!CapsulePlayer.isGrounded)
         {
-            Debug.Log(string.Format("JumpDirection = {0}", jumpDirection));
-            if (!CapsulePlayer.isGrounded)
-            {
-                jumpDirection.y -= gravity * Time.deltaTime;
-            } else {
-                
-                isJumping = false;
-                anim.SetInteger("move", 0);
-            }
+            jumpDirection.y -= gravity * Time.deltaTime;
+        } else {
+            isJumping = false;
+            jumpDirection = Vector3.zero;
+            anim.SetInteger("move", 0);
         }
-
-        CapsulePlayer.Move(moveDirection);
-        CapsulePlayer.Move(jumpDirection * Time.deltaTime);
-        CapsulePlayer.Move(moveJoystick);
-
-
     }
 
 }
