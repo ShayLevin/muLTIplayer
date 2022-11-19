@@ -57,14 +57,24 @@ public class MoveCapsule : MonoBehaviourPunCallbacks
     }
     public void jump()
     {
-        Debug.Log("jump");
-        if (!isJumping)
+        //Debug.Log("jump");
+        //if (!isJumping)
+        //{
+        //    isJumping = true;
+        //    Debug.Log("Beginning jump");
+        //    jumpDirection.y = jumpSpeed;
+        //    anim.SetInteger("move", 3);
+        //}
+        if (CapsulePlayer.isGrounded)
         {
-            isJumping = true;
-            Debug.Log("Beginning jump");
             jumpDirection.y = jumpSpeed;
-            anim.SetInteger("move", 3);
         }
+        else
+        {
+            jumpDirection.y -= gravity * Time.deltaTime;
+        }
+       
+
     }
     public void Fire()
     {
@@ -162,21 +172,28 @@ public class MoveCapsule : MonoBehaviourPunCallbacks
 
         if (Input.GetKey(KeyCode.Space))
         {
-            jump();
+            if (CapsulePlayer.isGrounded)
+            {
+                jumpDirection.y = jumpSpeed;
+            }
+            else
+            {
+                jumpDirection.y -= gravity * Time.deltaTime;
+            }
         }
 
         CapsulePlayer.Move(moveDirection 
             + jumpDirection * Time.deltaTime 
             + moveJoystick);
 
-        if (!CapsulePlayer.isGrounded)
-        {
-            jumpDirection.y -= gravity * Time.deltaTime;
-        } else {
-            isJumping = false;
-            jumpDirection = Vector3.zero;
-            anim.SetInteger("move", 0);
-        }
+        //if (!CapsulePlayer.isGrounded)
+        //{
+        //    jumpDirection.y -= gravity * Time.deltaTime;
+        //} else {
+        //    isJumping = false;
+        //    jumpDirection = Vector3.zero;
+        //    anim.SetInteger("move", 0);
+        //}
     }
 
 }
